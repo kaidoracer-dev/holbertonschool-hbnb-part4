@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function loginUser(email, password) {
     const response = await fetch('http://localhost:5000/api/v1/auth/login', {
         method: 'POST',
-        headers: { 'Content-type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password})
     });
 
@@ -84,7 +84,7 @@ function displayPlaces(places) {
         card.dataset.price = price;
 
         card.innerHTML = `
-            <h3>${place.name}</h3>
+            <h3>${place.title}</h3>
             <p>$${price} / night</p>
             <a href="place.html?id=${place.id}" class="details-button">View Details</a>        
         `;
@@ -161,7 +161,7 @@ function displayPlaceDetails(place) {
     detailsSection.innerHTML = `
         <div class="place-details">
             <div class="place-info">
-                <h2>${place.name}</h2>
+                <h2>${place.title}</h2>
                 <p><strong>Host:</strong> ${host}</p>
                 <p><strong>Price</strong> $${price} / night</p>
                 <p><strong>Description:</strong> ${place.description || 'No description.'}</p>
