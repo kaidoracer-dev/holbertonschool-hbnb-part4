@@ -20,39 +20,42 @@ class ReviewList(Resource):
     @jwt_required()
     def post(self):
         """Register a new review"""
-        current_id = get_jwt_identity()
-        data = request.json
-        data["user_id"] = current_id
+        try:
+            current_id = get_jwt_identity()
+            data = request.json
+            data["user_id"] = current_id
 
-        place_id = data.get("place_id")
+            place_id = data.get("place_id")
 
-        place = facade.get_place(place_id)
-        if not place:
-            return {"error": "Place not found"}, 400
-        if place.user_id == current_id:
-            return {"error": "Cannot review your own place"}, 400
+            place = facade.get_place(place_id)
+            if not place:
+                return {"error": "Place not found"}, 400
+            if place.user_id == current_id:
+                return {"error": "Cannot review your own place"}, 400
 
-        all_reviews = facade.get_all_reviews()
+            all_reviews = facade.get_all_reviews()
 
-        existing_review = next(
-        (r for r in all_reviews
-        if r.user_id == current_id and r.place_id == place_id),
-        None
-        )
-        if existing_review:
-            return {"error": "User has already reviewed this place"}, 400
+            existing_review = next(
+            (r for r in all_reviews
+            if r.user_id == current_id and r.place_id == place_id),
+            None
+            )
+            if existing_review:
+                return {"error": "User has already reviewed this place"}, 400
 
-        review = facade.create_review(data)
-        if not review:
-            return {"error": "Invalid input data"}, 400
+            review = facade.create_review(data)
+            if not review:
+                return {"error": "Invalid input data"}, 400
 
-        return {
-            'id': review.id,
-            'text': review.text,
-            'rating': review.rating,
-            'user_id': review.user_id,
-            'place_id': review.place_id
-        }, 201
+            return {
+                'id': review.id,
+                'text': review.text,
+                'rating': review.rating,
+                'user_id': review.user_id,
+                'place_id': review.place_id
+            }, 201
+        except Exception as e:
+            return {"error": str(e)}, 500
 
     @api.response(200, 'List of reviews retrieved successfully')
     def get(self):
@@ -93,24 +96,27 @@ class ReviewResource(Resource):
     @jwt_required()
     def put(self, review_id):
         """Update a review's information"""
-        current_user = get_jwt_identity()
-        review = facade.get_review(review_id)
-        claims = get_jwt()
+        try:
+            current_user = get_jwt_identity()
+            review = facade.get_review(review_id)
+            claims = get_jwt()
 
-        if not review:
-            return {"error": "Review not found or invalid data"}, 404
+            if not review:
+                return {"error": "Review not found or invalid data"}, 404
 
-        if review.user_id != current_user and not claims.get('is_admin'):
-            return {'error': 'Unauthorized action'}, 403
-        data = api.payload
+            if review.user_id != current_user and not claims.get('is_admin'):
+                return {'error': 'Unauthorized action'}, 403
+            data = api.payload
 
-        if not data:
-            return {"error": "Review not found or invalid data"}, 400
+            if not data:
+                return {"error": "Review not found or invalid data"}, 400
 
-        data["user_id"] = current_user
-        review_up = facade.update_review(review_id, data)
+            data["user_id"] = current_user
+            review_up = facade.update_review(review_id, data)
 
-        return {"message": "Review updated successfully"}, 200
+            return {"message": "Review updated successfully"}, 200
+        except Exception as e:
+            return {"error": str(e)}, 500
 
     @api.response(200, 'Review deleted successfully')
     @api.response(404, 'Review not found')

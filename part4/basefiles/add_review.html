@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Login - HBNB</title>
+    <link rel="icon" href="images/icon.png"/>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="HBNB" class="logo"/>
+        <a href="login.html" class="login-button" id="login-link">Login</a>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+    </nav>
+
+    <main class="main-content">
+
+        <div class="add-review">
+            <h2>Add a Review</h2>
+
+            <form id="review-form" class="form">
+                <div>
+                    <label for="rating">Rating (1-5)</label>
+                    <select id="rating" name="rating" required>
+                        <option value="">-- Select --</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="review-text">Your review</label>
+                    <textarea id="review-text" name="text" placeholder="Share your experience..." required></textarea>
+
+                </div>
+                <button type="submit">Submit Review</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 HBnB - All rights reserved.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+
+</body>
+</html>

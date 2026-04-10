@@ -1,0 +1,283 @@
+/* ── RESET ── */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── BODY ── */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* ── HEADER ── */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+/* ── LOGO ── */
+.logo {
+    height: 40px;
+}
+
+/* ── LOGIN BUTTON ── */
+.login-button {
+    background-color: #ff5a5f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* ── LOGIN BUTTON HOVER ── */
+.login-button:hover {
+    background-color: #e04848;
+}
+
+/* ── NAVIGATION BAR ── */
+nav {
+    background-color: #fff;
+    padding: 10px 24px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* ── NAV LINKS ── */
+nav a {
+    margin-right: 16px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+/* ── NAV LINKS HOVER ── */
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* ── FOOTER ── */
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    color: #999;
+    border-top: 1px solid #ddd;
+    margin-top: 40px;
+}
+
+/* ── PLACE CARD ── */
+.place-card {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    display: inline-block;
+    width: 280px;
+    vertical-align: top;
+}
+
+/* ── PLACE CARD TITLE ── */
+.place-card h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+/* ── PLACE CARD TEXT ── */
+.place-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* ── VIEW DETAILS BUTTON ── */
+.details-button {
+    display: inline-block;
+    background-color: #ff5a5f;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+}
+
+/* ── VIEW DETAILS BUTTON HOVER ── */
+.details-button:hover {
+    background-color: #e04848;
+}
+
+/* ── PLACE DETAILS SECTION ── */
+.place-details {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+/* ── PLACE INFO TEXT ── */
+.place-info {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #444;
+}
+
+/* ── PLACE INFO TITLE ── */
+.place-info h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* ── REVIEW CARD ── */
+.review-card {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+/* ── REVIEW CARD TEXT ── */
+.review-card p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+/* ── ADD REVIEW SECTION ── */
+.add-review {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+/* ── ADD REVIEW TITLE ── */
+.add-review h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+/* ── FORM LAYOUT ── */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 480px;
+}
+
+/* ── FORM LABELS ── */
+.form label {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    display: block;
+}
+
+/* ── FORM INPUTS ── */
+.form input,
+.form textarea,
+.form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+/* ── FORM INPUTS FOCUS ── */
+.form input:focus,
+.form textarea:focus {
+    outline: none;
+    border-color: #ff5a5f;
+}
+
+/* ── FORM TEXTAREA ── */
+.form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* ── FORM SUBMIT BUTTON ── */
+.form button[type="submit"] {
+    background-color: #ff5a5f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    align-self: flex-start;
+}
+
+/* ── FORM SUBMIT BUTTON HOVER ── */
+.form button[type="submit"]:hover {
+    background-color: #e04848;
+}
+
+/* ── LOGIN CONTAINER ── */
+.login-container {
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+/* ── LOGIN CONTAINER TITLE ── */
+.login-container h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* ── FILTER SECTION ── */
+.filter-section {
+    padding: 16px 24px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ── FILTER LABEL ── */
+.filter-section label {
+    font-size: 14px;
+    color: #333;
+}
+
+/* ── PRICE FILTER SELECT ── */
+#price-filter {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* ── PLACES LIST ── */
+#places-list {
+    padding: 16px 4px;
+}
+
+/* ── MAIN CONTENT WRAPPER ── */
+.main-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}

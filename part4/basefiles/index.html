@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Login - HBNB</title>
+    <link rel="icon" href="images/icon.png"/>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="HBNB" class="logo"/>
+        <a href="login.html" class="login-button" id="login-link">Login</a>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+    </nav>
+
+    <div class="filter-section">
+        <label for="price-filter">Filter by price:</label>
+        <select id="price-filter">
+            <option value="all">ALL</option>
+            <option value="10">$10</option>
+            <option value="50">$50</option>
+            <option value="100">$100</option>
+        </select>
+    </div>
+
+    <main class="main-content">
+        <div id="places-list"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 HBnB - All rights reserved.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+
+</body>
+</html>
