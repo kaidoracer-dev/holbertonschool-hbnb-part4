@@ -1,13 +1,16 @@
+// Get a cookie value by its name
 function getCookie(name) {
     const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
     return match ? decodeURIComponent(match[1]) : null;
 }
 
+// Get the place ID from the URL query parameters (?id=...)
 function getPlaceIdFromURL() {
     const params = new URLSearchParams(window.location.search);
     return params.get('id');
 }
 
+// Handle the login form submission
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
 
@@ -23,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Send a POST request to the API to log in the user and store the JWT token in a cookie
 async function loginUser(email, password) {
     const response = await fetch('http://localhost:5000/api/v1/auth/login', {
         method: 'POST',
@@ -40,6 +44,7 @@ async function loginUser(email, password) {
     }
 }
 
+// Check if the index page is loaded and trigger authentication check
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('places-list') !== null
         && !document.getElementById('place-details')) {
@@ -47,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Check if the user is authenticated and show or hide the login button
 function checkAuthentication() {
     const token = getCookie('token');
     const loginLink = document.getElementById('login-link');
@@ -59,6 +65,7 @@ function checkAuthentication() {
     }
 }
 
+// Fetch the list of all places from the API
 async function fetchPlaces(token) {
     const response = await fetch('http://localhost:5000/api/v1/places/', {
         headers: { 'Authorization': 'Bearer ' + token }
@@ -72,6 +79,7 @@ async function fetchPlaces(token) {
     }
 }
 
+// Display places as cards on the index page
 function displayPlaces(places) {
     const list = document.getElementById('places-list');
     list.innerHTML = '';
@@ -93,6 +101,7 @@ function displayPlaces(places) {
     });
 }
 
+// Filter displayed cards based on the selected maximum price
 document.addEventListener('DOMContentLoaded', () => {
     const priceFilter = document.getElementById('price-filter');
     if (priceFilter) {
@@ -112,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Check auth and load place details on place.html
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('place-details') !== null) {
         const token = getCookie('token');
@@ -136,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Fetch a place's details from the API using its ID
 async function fetchPlaceDetails(token, placeId) {
     const headers = token ? { 'Authorization': 'Bearer ' + token } : {};
     const response = await fetch('http://localhost:5000/api/v1/places/' + placeId, {headers});
@@ -148,6 +159,7 @@ async function fetchPlaceDetails(token, placeId) {
     }
 }
 
+// Display place details and reviews on place.html
 function displayPlaceDetails(place) {
     const detailsSection = document.getElementById('place-details');
     if (!detailsSection) return;
@@ -192,6 +204,7 @@ function displayPlaceDetails(place) {
     }
 }
 
+// Check auth on add_review.html and handle the review form submission
 document.addEventListener('DOMContentLoaded', () => {
     const reviewForm = document.getElementById('review-form');
 
@@ -219,6 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Send a new review to the API with the JWT token
 async function sumbitReview(token, placeId, reviewText, rating) {
     const response = await fetch('http://localhost:5000/api/v1/reviews/', {
         method: 'POST',
