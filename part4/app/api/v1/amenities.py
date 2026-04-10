@@ -25,17 +25,20 @@ class AmenityList(Resource):
     def post(self):
         """Register a new amenity"""
 
-        claims = get_jwt()
-        if not claims.get('is_admin'):
-            return {'error': 'Admin privileges required'}, 403
+        try:
+            claims = get_jwt()
+            if not claims.get('is_admin'):
+                return {'error': 'Admin privileges required'}, 403
 
-        amenity_data = api.payload
+            amenity_data = api.payload
 
-        if not amenity_data:
-            return {"error": "Invalid input data"}, 400
+            if not amenity_data:
+                return {"error": "Invalid input data"}, 400
 
-        new_amenity = facade.create_amenity(amenity_data)
-        return {'name': new_amenity.name}, 201
+            new_amenity = facade.create_amenity(amenity_data)
+            return {'name': new_amenity.name}, 201
+        except Exception as e:
+            return {"error": str(e)}, 500
 
 
     @api.response(200, 'List of amenities retrieved successfully')
@@ -72,21 +75,24 @@ class AmenityResource(Resource):
     def put(self, amenity_id):
         """Update an amenity's information"""
 
-        claims = get_jwt()
-        if not claims.get('is_admin'):
-            return {'error': 'Admin privileges required'}, 403
+        try:
+            claims = get_jwt()
+            if not claims.get('is_admin'):
+                return {'error': 'Admin privileges required'}, 403
 
-        amenity_data = api.payload
+            amenity_data = api.payload
 
-        if not amenity_data:
-            return {"error": "Invalid input data"}, 400
+            if not amenity_data:
+                return {"error": "Invalid input data"}, 400
 
-        amenity = facade.update_amenity(amenity_id, amenity_data)
+            amenity = facade.update_amenity(amenity_id, amenity_data)
 
-        if not amenity:
-            return {'error': 'Amenity not found'}, 404
+            if not amenity:
+                return {'error': 'Amenity not found'}, 404
 
-        return {'id': amenity.id, 'name': amenity.name}, 200
+            return {'id': amenity.id, 'name': amenity.name}, 200
+        except Exception as e:
+            return {"error": str(e)}, 500
     
 @api.route('/link-one-to-place/<place_id>')
 class PlaceSingleAmenityLink(Resource):

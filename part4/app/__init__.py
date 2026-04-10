@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restx import Api
 from app.extensions import db, bcrypt, jwt
+from flask_cors import CORS
 
 def create_app(config_class="config.DevelopmentConfig"):
         app = Flask(__name__)
@@ -9,6 +10,7 @@ def create_app(config_class="config.DevelopmentConfig"):
         db.init_app(app)
         bcrypt.init_app(app)
         jwt.init_app(app)
+        CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
 
         from app.api.v1.users import api as users_ns
         from app.api.v1.auth import api as auth_ns
