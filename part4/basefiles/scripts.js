@@ -164,18 +164,12 @@ function displayPlaceDetails(place) {
     const detailsSection = document.getElementById('place-details');
     if (!detailsSection) return;
 
-    const price = place.price_by_night ?? place.price ?? 0;
-    const host = place.owner
-        ? place.owner.first_name + ' ' + place.owner.last_name
-        : 'Unknown';
-
-    
     detailsSection.innerHTML = `
         <div class="place-details">
             <div class="place-info">
                 <h2>${place.title}</h2>
-                <p><strong>Host:</strong> ${host}</p>
-                <p><strong>Price</strong> $${price} / night</p>
+                <p><strong>Host:</strong> ${place.owner}</p>
+                <p><strong>Price</strong> $${place.price} / night</p>
                 <p><strong>Description:</strong> ${place.description || 'No description.'}</p>
                 <p><strong>Amenities:</strong> ${
                     place.amenities && place.amenities.length
